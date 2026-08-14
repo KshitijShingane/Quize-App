@@ -1,12 +1,15 @@
 const homeScreen = document.getElementById("home-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
+const addQuestionScreen = document.getElementById("add-question-screen");
 
 const startBtn = document.getElementById("start-btn");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const restartBtn = document.getElementById("restart-btn");
-
+const addQuestionBtn = document.getElementById("add-question-btn");
+const saveQuestionBtn = document.getElementById("save-question-btn");
+const backHomeBtn = document.getElementById("back-home-btn");
 const questionCount = document.getElementById("question-count");
 const questionText = document.getElementById("question");
 const optionsContainer = document.getElementById("options");
@@ -224,4 +227,55 @@ restartBtn.addEventListener("click", () => {
 
     homeScreen.classList.add("active");
 
+});
+// ----------------------------
+// Add Question
+// ----------------------------
+
+addQuestionBtn.addEventListener("click", () => {
+    homeScreen.classList.remove("active");
+    addQuestionScreen.classList.add("active");
+});
+
+backHomeBtn.addEventListener("click", () => {
+    addQuestionScreen.classList.remove("active");
+    homeScreen.classList.add("active");
+});
+
+saveQuestionBtn.addEventListener("click", () => {
+
+    const question = document.getElementById("new-question").value;
+    const option1 = document.getElementById("option-1").value;
+    const option2 = document.getElementById("option-2").value;
+    const option3 = document.getElementById("option-3").value;
+    const option4 = document.getElementById("option-4").value;
+    const answer = Number(document.getElementById("correct-answer").value);
+
+    if (
+        question === "" ||
+        option1 === "" ||
+        option2 === "" ||
+        option3 === "" ||
+        option4 === ""
+    ) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    questions.push({
+        question: question,
+        options: [option1, option2, option3, option4],
+        answer: answer
+    });
+
+    alert("Question added successfully!");
+
+    document.getElementById("new-question").value = "";
+    document.getElementById("option-1").value = "";
+    document.getElementById("option-2").value = "";
+    document.getElementById("option-3").value = "";
+    document.getElementById("option-4").value = "";
+
+    addQuestionScreen.classList.remove("active");
+    homeScreen.classList.add("active");
 });
