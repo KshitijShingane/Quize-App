@@ -15,9 +15,32 @@
             <p>Challenge yourself and improve your programming knowledge.</p>
 
             <button id="start-btn">Start Quiz</button>
+	    <button id="add-question-btn">➕ Add Question</button>
         </div>
     </section>
+	<!-- Add Question Screen -->
+<section id="add-question-screen" class="screen">
+    <div class="container">
+        <h1>➕ Add Question</h1>
 
+        <input id="new-question" type="text" placeholder="Enter question">
+
+        <input id="option-1" type="text" placeholder="Option 1">
+        <input id="option-2" type="text" placeholder="Option 2">
+        <input id="option-3" type="text" placeholder="Option 3">
+        <input id="option-4" type="text" placeholder="Option 4">
+
+        <select id="correct-answer">
+            <option value="0">Correct Answer: Option 1</option>
+            <option value="1">Correct Answer: Option 2</option>
+            <option value="2">Correct Answer: Option 3</option>
+            <option value="3">Correct Answer: Option 4</option>
+        </select>
+
+        <button id="save-question-btn">Add Question</button>
+        <button id="back-home-btn">Back</button>
+    </div>
+</section>
     <!-- Quiz Screen -->
     <section id="quiz-screen" class="screen">
 
