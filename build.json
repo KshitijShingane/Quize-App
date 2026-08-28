@@ -1,0 +1,50 @@
+const fs = require("fs");
+
+const requiredFiles = [
+    "index.html",
+    "style.css",
+    "script.js",
+    "questions.js",
+    "package.json"
+];
+
+console.log("=================================");
+console.log("       QUIZ-APP BUILD START      ");
+console.log("=================================\n");
+
+let buildSuccessful = true;
+
+for (const file of requiredFiles) {
+    if (fs.existsSync(file)) {
+        console.log(`✓ ${file} found`);
+    } else {
+        console.error(`✗ ${file} not found`);
+        buildSuccessful = false;
+    }
+}
+
+console.log("\nChecking JavaScript files...");
+
+try {
+    new Function(fs.readFileSync("questions.js", "utf8"));
+    console.log("✓ questions.js syntax valid");
+
+    new Function(fs.readFileSync("script.js", "utf8"));
+    console.log("✓ script.js syntax valid");
+} catch (error) {
+    console.error("✗ JavaScript syntax error");
+    console.error(error.message);
+    buildSuccessful = false;
+}
+
+if (!buildSuccessful) {
+    console.error("\n=================================");
+    console.error("       BUILD FAILED              ");
+    console.error("=================================");
+
+    process.exit(1);
+}
+
+console.log("\n=================================");
+console.log("       BUILD SUCCESSFUL          ");
+console.log("=================================");
